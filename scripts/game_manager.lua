@@ -30,8 +30,11 @@ function game_manager:create(file)
   
   sol.main.load_file("scripts/dialog_box.lua")(game)
   sol.main.load_file("scripts/game_over.lua")(game)
-  sol.main.load_file("scripts/hero_manager/custom_interactions.lua")(game)
-  sol.main.load_file("scripts/hero_manager/collision_test_manager.lua")(game)
+  
+  -- THIS LINES ARE NEEDED FOR THE GENERIC_PORTABLE.LUA SCRIPT!!!!
+  sol.main.load_file("scripts/custom_interactions.lua")(game)
+  sol.main.load_file("scripts/collision_test_manager.lua")(game)
+  
   local hud_manager = require("scripts/hud/hud")
   local hud
   local pause_manager = require("scripts/menus/pause")
@@ -40,7 +43,7 @@ function game_manager:create(file)
   local hero_manager_builder = require("scripts/hero_manager/hero_manager")
   
   -- THIS LINES ARE NEEDED FOR THE GENERIC_PORTABLE.LUA SCRIPT!!!!
-  game.save_between_maps = require("scripts/hero_manager/save_between_maps")
+  game.save_between_maps = require("scripts/save_between_maps")
   game.independent_entities = {}
   
   -- Function called when the player runs this game.
