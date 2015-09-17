@@ -144,10 +144,13 @@ function game_manager:create(file)
       if game:get_command_effect("action") == nil then
         local action_effect = game:get_custom_command_effect("action")
         -- Custom action effects.
+        -- THIS IS NEEDED FOR THE GENERIC_PORTABLE.LUA SCRIPT!!!!
         if action_effect and game:get_interaction_entity() then
          game:get_hero().custom_interaction:on_custom_interaction(); return true
         end
+        
         -- Here we deal with the features "switch hero" and the hero dialog menu.
+        -- NOT NEEDED
         if not game.hero_manager.enabled or game.hero_manager.dialog_enabled then return end
         if action_effect == nil or action_effect == "custom_carry" then
           -- Switch hero.
@@ -156,18 +159,22 @@ function game_manager:create(file)
       else
         return false -- The engine handles the action.
       end
-	  end
-	  -- Deal with attack command.
-	  if command == "attack" then
+    end
+    
+    -- Deal with attack command.
+    if command == "attack" then
       local attack_effect = game:get_custom_command_effect("attack")
-	    if attack_effect == "custom_carry" then
-	      game:get_hero().custom_carry:throw(); return true
-	    elseif attack_effect == "custom_jump" then
+      if attack_effect == "custom_carry" then
+      	-- THIS IS NEEDED FOR THE GENERIC_PORTABLE.LUA SCRIPT!!!!
+        game:get_hero().custom_carry:throw(); return true
+      elseif attack_effect == "custom_jump" then
         return true -- Do nothing during the jump.
       end
-	  end
+    end
+    
     -- Avoid using items during custom_carry state.
-	  if command == "item_1" or command == "item_2" then
+    -- THIS IS NEEDED FOR THE GENERIC_PORTABLE.LUA SCRIPT!!!!
+    if command == "item_1" or command == "item_2" then
       local custom_action = game:get_custom_command_effect("action")
       if custom_action == "custom_carry" or custom_action == "custom_jump" then
         return true
