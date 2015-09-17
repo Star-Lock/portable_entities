@@ -38,6 +38,8 @@ function game_manager:create(file)
   local pause_menu
   
   local hero_manager_builder = require("scripts/hero_manager/hero_manager")
+  
+  -- THIS LINES ARE NEEDED FOR THE GENERIC_PORTABLE.LUA SCRIPT!!!!
   game.save_between_maps = require("scripts/hero_manager/save_between_maps")
   game.independent_entities = {}
   
