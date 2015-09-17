@@ -54,6 +54,8 @@ function game_manager:create(file)
     game:set_command_joypad_binding("attack", "button 11")
     game:set_command_joypad_binding("item_1", "button 12")
     game:set_command_joypad_binding("item_2", "button 13")
+    
+    -- THIS IS NEEDED FOR THE GENERIC_PORTABLE.LUA SCRIPT!!!!!
     -- Modify metatable of hero to make carried entities follow him with hero:on_position_changed().
     local hero_metatable = sol.main.get_metatable("hero")
     function hero_metatable:on_position_changed()
@@ -96,8 +98,9 @@ function game_manager:create(file)
   function game:on_map_changed(map)  
     -- Notify the HUD and hero manager(some HUD elements need to know that).
     hud:on_map_changed(map)
-	  game.hero_manager:on_map_changed(map) -- Create npc_heroes.
-	  game.save_between_maps:load_map(map) -- Create saved and carried entities.
+    
+    -- THIS IS NEEDED FOR THE GENERIC_PORTABLE.LUA SCRIPT!!!!
+    game.save_between_maps:load_map(map) -- Create saved and carried entities.
   end
 
   -- After a dialog, the HUD is restarted, which gives a problem with custom_carrying_items. This solves the problem.
@@ -128,7 +131,7 @@ function game_manager:create(file)
   function game:is_hero_manager_enabled() return game.hero_manager:is_enabled() end
   function game:set_hero_manager_enabled(enable) return game.hero_manager:set_enabled(enable) end
 
-
+  -- PART OF NEXT CODE IS NEEDED FOR THE GENERIC_PORTABLE.LUA SCRIPT!!!!
   function game:on_command_pressed(command)
     -- Skip function if dialog box is enabled.
     if game:is_dialog_enabled() then return false end
