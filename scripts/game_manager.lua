@@ -39,7 +39,6 @@ function game_manager:create(file)
   
   local hero_manager_builder = require("scripts/hero_manager/hero_manager")
   game.save_between_maps = require("scripts/hero_manager/save_between_maps")
-  game.active_maps = {}
   game.independent_entities = {}
   
   -- Function called when the player runs this game.
