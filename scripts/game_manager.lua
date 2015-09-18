@@ -68,6 +68,12 @@ function game_manager:create(file)
         self.custom_carry:set_position(x, y+2, layer)
       end
     end
+    local hero_tunic_sprites_id = {[1] = "tunic1", [2] = "tunic_carrying1"} -- Tunic names.
+    function hero_metatable:set_carrying(boolean) 
+      local i = 0; if boolean then i = 1 end
+      hero:set_tunic_sprite_id(hero_tunic_sprites[i])
+    end
+    
   end
 
   -- Function called when the game stops.  
