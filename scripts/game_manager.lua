@@ -71,7 +71,7 @@ function game_manager:create(file)
     local hero_tunic_sprites_id = {[1] = "tunic1", [2] = "tunic_carrying1"} -- Tunic names.
     function hero_metatable:set_carrying(boolean) 
       local i = 0; if boolean then i = 1 end
-      hero:set_tunic_sprite_id(hero_tunic_sprites[i])
+      self:set_tunic_sprite_id(hero_tunic_sprites_id[i])
     end
     
   end
@@ -80,8 +80,8 @@ function game_manager:create(file)
   function game:on_finished()
     -- Clean the dialog box and the HUD.
     game:quit_dialog_box()
-	  hud:quit()
-	  game.hero_manager:quit()
+    hud:quit()
+    game.hero_manager:quit()
 	  --hud = nil; pause_menu = nil; game.hero_manager = nil; game.save_between_maps = nil
   end
   
