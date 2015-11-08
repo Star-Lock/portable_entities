@@ -1,2 +1,1 @@
-# portable_entities
-A bunch of scripts to allow carrying custom entities.
+This repository contains a bunch of scripts to allow carrying custom entities.
